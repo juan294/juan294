@@ -26,19 +26,6 @@ I design and ship production AI systems, developer tools, and voice products. I 
 
 ---
 
-## Featured Projects
+## Chapa
 
-| Repo | Description | Stars |
-|------|-------------|-------|
-| [summon](https://github.com/juan294/summon) | Launch a complete Ghostty workspace with native splits and no tmux | [![Stars](https://img.shields.io/github/stars/juan294/summon?style=flat&label=%E2%98%85)](https://github.com/juan294/summon/stargazers) |
-| [cc-rpi](https://github.com/juan294/cc-rpi) | Research–Plan–Implement guardrails for reliable AI-assisted development | [![Stars](https://img.shields.io/github/stars/juan294/cc-rpi?style=flat&label=%E2%98%85)](https://github.com/juan294/cc-rpi/stargazers) |
-| [chapa-cli](https://github.com/juan294/chapa-cli) | Merge work and personal contributions into one developer-impact badge | [![Stars](https://img.shields.io/github/stars/juan294/chapa-cli?style=flat&label=%E2%98%85)](https://github.com/juan294/chapa-cli/stargazers) |
-| [gh-glance](https://github.com/juan294/gh-glance) | Monitor Actions, issues, pull requests, and security alerts in the terminal | [![Stars](https://img.shields.io/github/stars/juan294/gh-glance?style=flat&label=%E2%98%85)](https://github.com/juan294/gh-glance/stargazers) |
-
----
-
-[![Portfolio](https://img.shields.io/badge/Portfolio-000000?style=flat&logo=safari&logoColor=white)](https://portfolio.thecreativetoken.com)
-[![LinkedIn](https://img.shields.io/badge/juanagonzalezp-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/juanagonzalezp/)
-[![X](https://img.shields.io/badge/@JuanG294-000000?style=flat&logo=x&logoColor=white)](https://x.com/JuanG294)
-[![Medium](https://img.shields.io/badge/@juang294-000000?style=flat&logo=medium&logoColor=white)](https://medium.com/@juang294)
-[![Email](https://img.shields.io/badge/juan294%40gmail.com-EA4335?style=flat&logo=gmail&logoColor=white)](mailto:juan294@gmail.com)
+[![Juan González's Chapa developer impact badge](https://chapa.thecreativetoken.com/u/juan294/badge.svg)](https://chapa.thecreativetoken.com/u/juan294)
