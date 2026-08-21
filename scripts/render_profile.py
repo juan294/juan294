@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render the profile terminal SVG with current public GitHub statistics."""
+"""Render theme-aware profile SVGs with current public GitHub statistics."""
 
 from __future__ import annotations
 
@@ -13,10 +13,30 @@ from xml.sax.saxutils import escape
 ROOT = Path(__file__).resolve().parents[1]
 USERNAME = "juan294"
 API = "https://api.github.com"
+ROW_WIDTH = 54
+PORTRAIT_COLUMNS = 40
+PORTRAIT_ROWS = 20
 
 
-def github_json(url: str, token: str, data: dict | None = None) -> dict | list:
-    body = None if data is None else json.dumps(data).encode()
+THEMES = {
+    "dark_mode.svg": {
+        "background": "#161b22",
+        "text": "#c9d1d9",
+        "key": "#ffa657",
+        "value": "#a5d6ff",
+        "leader": "#616e7f",
+    },
+    "light_mode.svg": {
+        "background": "#f6f8fa",
+        "text": "#24292f",
+        "key": "#953800",
+        "value": "#0550ae",
+        "leader": "#6e7781",
+    },
+}
+
+
+def github_json(url: str, token: str) -> dict | list:
     headers = {
         "Accept": "application/vnd.github+json",
         "User-Agent": f"{USERNAME}-profile-readme",
@@ -24,7 +44,7 @@ def github_json(url: str, token: str, data: dict | None = None) -> dict | list:
     }
     if token:
         headers["Authorization"] = f"Bearer {token}"
-    request = Request(url, data=body, headers=headers)
+    request = Request(url, headers=headers)
     with urlopen(request, timeout=20) as response:
         return json.load(response)
 
@@ -32,9 +52,23 @@ def github_json(url: str, token: str, data: dict | None = None) -> dict | list:
 def collect_stats() -> dict[str, int]:
     token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN", "")
     user = github_json(f"{API}/users/{USERNAME}", token)
-    repos = github_json(
-        f"{API}/users/{USERNAME}/repos?per_page=100&type=owner&sort=updated", token
-    )
+    if not isinstance(user, dict):
+        raise TypeError("GitHub user response must be an object")
+
+    repos: list[dict] = []
+    page = 1
+    while True:
+        batch = github_json(
+            f"{API}/users/{USERNAME}/repos"
+            f"?per_page=100&type=owner&sort=updated&page={page}",
+            token,
+        )
+        if not isinstance(batch, list):
+            raise TypeError("GitHub repositories response must be a list")
+        repos.extend(batch)
+        if len(batch) < 100:
+            break
+        page += 1
     return {
         "repos": int(user["public_repos"]),
         "stars": sum(int(repo["stargazers_count"]) for repo in repos),
@@ -42,131 +76,117 @@ def collect_stats() -> dict[str, int]:
     }
 
 
-def text(x: int, y: int, value: str, class_name: str) -> str:
-    return f'<text x="{x}" y="{y}" class="{class_name}">{escape(value)}</text>'
+def markup_line(y: int, markup: str, x: int = 410) -> str:
+    return f'<tspan x="{x}" y="{y}">{markup}</tspan>'
 
 
-def row(y: int, label: str, value: str) -> list[str]:
-    return [
-        f'<line x1="625" y1="{y - 4}" x2="1138" y2="{y - 4}" class="leader"/>',
-        text(480, y, label, "label"),
-        text(740, y, value, "value"),
+def text_line(y: int, value: str, x: int = 410) -> str:
+    return markup_line(y, escape(value), x)
+
+
+def row(y: int, label: str, value: str) -> str:
+    fixed_width = 2 + len(label) + 1 + 1 + 1 + len(value)
+    dot_count = ROW_WIDTH - fixed_width
+    if dot_count < 1:
+        raise ValueError(f"Profile row exceeds {ROW_WIDTH} columns: {label}: {value}")
+    dots = "." * dot_count
+    return markup_line(
+        y,
+        '<tspan class="cc">. </tspan>'
+        f'<tspan class="key">{escape(label)}</tspan>:'
+        f'<tspan class="cc"> {dots} </tspan>'
+        f'<tspan class="value">{escape(value)}</tspan>',
+    )
+
+
+def section(y: int, title: str) -> str:
+    rule = "—" * max(1, ROW_WIDTH - len(title) - 3)
+    return text_line(y, f"- {title} {rule}")
+
+
+def build_content(stats: dict[str, int], portrait: list[str]) -> tuple[str, str]:
+    portrait_lines = "\n".join(
+        f'    <tspan x="15" y="{70 + index * 20}">{escape(value)}</tspan>'
+        for index, value in enumerate(portrait)
+    )
+
+    details = [
+        text_line(30, "juan@github " + "—" * 41),
+        row(50, "OS", "macOS, Linux"),
+        row(70, "Host", "Avolta"),
+        row(90, "Role", "Digital Architect / Developer"),
+        row(110, "Prev", "Amazon Alexa / health-tech founder"),
+        row(130, "Tools", "Codex, Claude Code, Ghostty"),
+        markup_line(150, '<tspan class="cc">. </tspan>'),
+        row(170, "Languages.Programming", "TypeScript, Python, JS"),
+        row(190, "Languages.Platform", "Next.js, React, Node.js, SQL"),
+        row(210, "Languages.Real", "English, Spanish"),
+        markup_line(230, '<tspan class="cc">. </tspan>'),
+        row(250, "Focus", "production AI agents + developer tools"),
+        row(270, "Shipped", "voice products + terminal tooling"),
+        section(310, "Contact"),
+        row(330, "Email", "juan294@gmail.com"),
+        row(350, "Web", "portfolio.thecreativetoken.com"),
+        row(370, "Twitter", "@JuanG294"),
+        row(390, "LinkedIn", "juanagonzalezp"),
+        row(410, "Medium", "@juang294"),
+        section(450, "GitHub Stats"),
+        markup_line(
+            470,
+            '<tspan class="cc">. </tspan>'
+            '<tspan class="key">Repos</tspan>: '
+            f'<tspan class="value">{stats["repos"]:,}</tspan> | '
+            '<tspan class="key">Stars</tspan>: '
+            f'<tspan class="value">{stats["stars"]:,}</tspan> | '
+            '<tspan class="key">Followers</tspan>: '
+            f'<tspan class="value">{stats["followers"]:,}</tspan>',
+        ),
+        row(490, "Method", "RPI / TDD / CI/CD"),
+        row(510, "Location", "Gijón, Asturias, Spain"),
     ]
+    detail_lines = "\n    ".join(details)
+    return portrait_lines, detail_lines
 
 
-def render(stats: dict[str, int]) -> str:
-    portrait = (ROOT / "assets" / "portrait.txt").read_text().splitlines()
-    elements: list[str] = []
-
-    for index, line in enumerate(portrait):
-        elements.append(text(40, 105 + index * 14, line, "portrait"))
-
-    elements.extend(
-        [
-            text(480, 91, "juan294@github", "identity"),
-            '<line x1="650" y1="84" x2="1148" y2="84" class="rule"/>',
-        ]
-    )
-
-    y = 124
-    for label, value in [
-        ("OS", "macOS / Linux"),
-        ("Shell", "zsh"),
-        ("Host", "Avolta + independent builds"),
-        ("Role", "Digital Architect / Developer / Entrepreneur"),
-        ("Previous", "Amazon Alexa / health-tech founder"),
-    ]:
-        elements.extend(row(y, label, value))
-        y += 25
-
-    y += 13
-    for label, value in [
-        ("Languages.Code", "TypeScript, Python, JavaScript, Shell"),
-        ("Languages.Real", "English, Spanish"),
-        ("Focus", "production AI agents + developer tools"),
-        ("Method", "RPI / TDD / CI/CD"),
-    ]:
-        elements.extend(row(y, label, value))
-        y += 25
-
-    y += 13
-    elements.extend(
-        [
-            text(480, y, "- Contact", "section"),
-            f'<line x1="590" y1="{y - 6}" x2="1148" y2="{y - 6}" class="rule"/>',
-        ]
-    )
-    y += 31
-    for label, value in [
-        ("Email", "juan294@gmail.com"),
-        ("Portfolio", "portfolio.thecreativetoken.com"),
-        ("Medium", "medium.com/@juang294"),
-        ("LinkedIn", "linkedin.com/in/juanagonzalezp"),
-    ]:
-        elements.extend(row(y, label, value))
-        y += 25
-
-    y += 13
-    elements.extend(
-        [
-            text(480, y, "- GitHub Stats", "section"),
-            f'<line x1="635" y1="{y - 6}" x2="1148" y2="{y - 6}" class="rule"/>',
-        ]
-    )
-    y += 31
-    elements.extend(row(y, "Public repos", f'{stats["repos"]:,}'))
-    elements.extend(row(y + 25, "Stars", f'{stats["stars"]:,}'))
-    elements.extend(row(y + 50, "Followers", f'{stats["followers"]:,}'))
-
-    body = "\n    ".join(elements)
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+def render(colors: dict[str, str], portrait_lines: str, detail_lines: str) -> str:
+    return f'''<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,monospace" viewBox="0 0 985 530" width="985px" height="530px" font-size="16px" role="img" aria-labelledby="title desc">
   <title id="title">Juan Gonzalez terminal profile</title>
-  <desc id="desc">An ASCII portrait of Juan Gonzalez beside professional details, contact links, and current GitHub statistics.</desc>
-  <defs>
-    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0a1018"/>
-      <stop offset="0.55" stop-color="#101923"/>
-      <stop offset="1" stop-color="#0a111b"/>
-    </linearGradient>
-    <linearGradient id="portraitInk" x1="0" y1="0" x2="0.9" y2="1">
-      <stop offset="0" stop-color="#d6e7f7"/>
-      <stop offset="0.5" stop-color="#79c0ff"/>
-      <stop offset="1" stop-color="#f0a65b"/>
-    </linearGradient>
-    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
-      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#000" flood-opacity="0.38"/>
-    </filter>
-  </defs>
+  <desc id="desc">An ASCII portrait beside professional details, contact links, and public GitHub statistics.</desc>
   <style>
-    text {{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; }}
-    .portrait {{ font-size: 12px; white-space: pre; fill: url(#portraitInk); letter-spacing: 0.15px; }}
-    .chrome {{ font-size: 15px; font-weight: 600; fill: #8b949e; }}
-    .identity {{ font-size: 20px; font-weight: 700; fill: #e6edf3; }}
-    .label {{ font-size: 16px; font-weight: 700; fill: #f0a65b; paint-order: stroke; stroke: #0e1721; stroke-width: 6px; }}
-    .value {{ font-size: 16px; fill: #9ecbff; paint-order: stroke; stroke: #0e1721; stroke-width: 6px; }}
-    .section {{ font-size: 17px; font-weight: 700; fill: #d9e2ec; paint-order: stroke; stroke: #0e1721; stroke-width: 6px; }}
-    .leader {{ stroke: #35404d; stroke-width: 1.2; stroke-dasharray: 1 7; }}
-    .rule {{ stroke: #46515f; stroke-width: 1.4; }}
+    .key {{ fill: {colors["key"]}; }}
+    .value {{ fill: {colors["value"]}; }}
+    .cc {{ fill: {colors["leader"]}; }}
+    text, tspan {{ white-space: pre; }}
   </style>
-  <rect x="12" y="12" width="1176" height="626" rx="20" fill="url(#background)" stroke="#303b49" stroke-width="2" filter="url(#shadow)"/>
-  <rect x="12" y="12" width="1176" height="52" rx="20" fill="#151f2b"/>
-  <path d="M12 44v20h1176V44" fill="#151f2b"/>
-  <circle cx="38" cy="38" r="7" fill="#ff7b72"/>
-  <circle cx="62" cy="38" r="7" fill="#f2cc60"/>
-  <circle cx="86" cy="38" r="7" fill="#56d364"/>
-  {text(112, 44, "juan294 / README.md", "chrome")}
-  <line x1="448" y1="84" x2="448" y2="608" stroke="#2a3542" stroke-width="1.5"/>
-  {body}
+  <rect width="985" height="530" fill="{colors["background"]}" rx="15"/>
+  <text fill="{colors["text"]}" class="ascii">
+{portrait_lines}
+  </text>
+  <text fill="{colors["text"]}">
+    {detail_lines}
+  </text>
 </svg>
 '''
 
 
 def main() -> None:
     stats = collect_stats()
-    destination = ROOT / "assets" / "terminal.svg"
-    destination.write_text(render(stats))
+    portrait = (ROOT / "assets" / "portrait.txt").read_text(encoding="utf-8").splitlines()
+    if len(portrait) != PORTRAIT_ROWS or any(
+        len(line) > PORTRAIT_COLUMNS for line in portrait
+    ):
+        raise ValueError(
+            f"Portrait must be {PORTRAIT_ROWS} rows and at most "
+            f"{PORTRAIT_COLUMNS} columns"
+        )
+    portrait_lines, detail_lines = build_content(stats, portrait)
+    for filename, colors in THEMES.items():
+        (ROOT / filename).write_text(
+            render(colors, portrait_lines, detail_lines), encoding="utf-8"
+        )
     print(
-        "Rendered terminal.svg: "
+        f'Rendered {" and ".join(THEMES)}: '
         f'{stats["repos"]} repos, {stats["stars"]} stars, '
         f'{stats["followers"]} followers'
     )
