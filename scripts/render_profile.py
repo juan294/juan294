@@ -14,8 +14,8 @@ ROOT = Path(__file__).resolve().parents[1]
 USERNAME = "juan294"
 API = "https://api.github.com"
 ROW_WIDTH = 54
-PORTRAIT_COLUMNS = 40
-PORTRAIT_ROWS = 20
+ART_COLUMNS = 54
+ART_ROWS = 36
 
 
 THEMES = {
@@ -104,10 +104,10 @@ def section(y: int, title: str) -> str:
     return text_line(y, f"- {title} {rule}")
 
 
-def build_content(stats: dict[str, int], portrait: list[str]) -> tuple[str, str]:
-    portrait_lines = "\n".join(
-        f'    <tspan x="15" y="{70 + index * 20}">{escape(value)}</tspan>'
-        for index, value in enumerate(portrait)
+def build_content(stats: dict[str, int], art: list[str]) -> tuple[str, str]:
+    art_lines = "\n".join(
+        f'    <tspan x="8" y="{13 + index * 14}">{escape(value)}</tspan>'
+        for index, value in enumerate(art)
     )
 
     details = [
@@ -145,14 +145,14 @@ def build_content(stats: dict[str, int], portrait: list[str]) -> tuple[str, str]
         row(510, "Location", "Gijón, Asturias, Spain"),
     ]
     detail_lines = "\n    ".join(details)
-    return portrait_lines, detail_lines
+    return art_lines, detail_lines
 
 
-def render(colors: dict[str, str], portrait_lines: str, detail_lines: str) -> str:
+def render(colors: dict[str, str], art_lines: str, detail_lines: str) -> str:
     return f'''<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,monospace" viewBox="0 0 985 530" width="985px" height="530px" font-size="16px" role="img" aria-labelledby="title desc">
   <title id="title">Juan Gonzalez terminal profile</title>
-  <desc id="desc">An ASCII portrait beside professional details, contact links, and public GitHub statistics.</desc>
+  <desc id="desc">An ASCII walking traveler beside professional details, contact links, and public GitHub statistics.</desc>
   <style>
     .key {{ fill: {colors["key"]}; }}
     .value {{ fill: {colors["value"]}; }}
@@ -160,8 +160,8 @@ def render(colors: dict[str, str], portrait_lines: str, detail_lines: str) -> st
     text, tspan {{ white-space: pre; }}
   </style>
   <rect width="985" height="530" fill="{colors["background"]}" rx="15"/>
-  <text fill="{colors["text"]}" class="ascii">
-{portrait_lines}
+  <text fill="{colors["text"]}" class="ascii" font-size="12px">
+{art_lines}
   </text>
   <text fill="{colors["text"]}">
     {detail_lines}
@@ -172,18 +172,18 @@ def render(colors: dict[str, str], portrait_lines: str, detail_lines: str) -> st
 
 def main() -> None:
     stats = collect_stats()
-    portrait = (ROOT / "assets" / "portrait.txt").read_text(encoding="utf-8").splitlines()
-    if len(portrait) != PORTRAIT_ROWS or any(
-        len(line) > PORTRAIT_COLUMNS for line in portrait
+    art = (ROOT / "assets" / "wanderer.txt").read_text(encoding="utf-8").splitlines()
+    if len(art) != ART_ROWS or any(
+        len(line) > ART_COLUMNS for line in art
     ):
         raise ValueError(
-            f"Portrait must be {PORTRAIT_ROWS} rows and at most "
-            f"{PORTRAIT_COLUMNS} columns"
+            f"ASCII art must be {ART_ROWS} rows and at most "
+            f"{ART_COLUMNS} columns"
         )
-    portrait_lines, detail_lines = build_content(stats, portrait)
+    art_lines, detail_lines = build_content(stats, art)
     for filename, colors in THEMES.items():
         (ROOT / filename).write_text(
-            render(colors, portrait_lines, detail_lines), encoding="utf-8"
+            render(colors, art_lines, detail_lines), encoding="utf-8"
         )
     print(
         f'Rendered {" and ".join(THEMES)}: '

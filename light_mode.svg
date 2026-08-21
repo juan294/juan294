@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,monospace" viewBox="0 0 985 530" width="985px" height="530px" font-size="16px" role="img" aria-labelledby="title desc">
   <title id="title">Juan Gonzalez terminal profile</title>
-  <desc id="desc">An ASCII portrait beside professional details, contact links, and public GitHub statistics.</desc>
+  <desc id="desc">An ASCII walking traveler beside professional details, contact links, and public GitHub statistics.</desc>
   <style>
     .key { fill: #953800; }
     .value { fill: #0550ae; }
@@ -9,27 +9,43 @@
     text, tspan { white-space: pre; }
   </style>
   <rect width="985" height="530" fill="#f6f8fa" rx="15"/>
-  <text fill="#24292f" class="ascii">
-    <tspan x="15" y="70">             :-=++*****+=-:.</tspan>
-    <tspan x="15" y="90">         .=*#%%%%%%%%%%%%%%#*=:</tspan>
-    <tspan x="15" y="110">       -*%%%%%%%#*+++*#%%%%%%%%*=</tspan>
-    <tspan x="15" y="130">     -#%%*++++*+.      :=#%%%%%%%#=</tspan>
-    <tspan x="15" y="150">   .*%%%==##%%%##+:       =#%%%%%%%*.</tspan>
-    <tspan x="15" y="170">  .#%%%#:%%%%%#*+***=-:    .*%%%%%%%#.</tspan>
-    <tspan x="15" y="190">  *%%%%%+*%%#:      :-===.   #%%%%%%%#</tspan>
-    <tspan x="15" y="210"> =%%%%%%%#*#+:. .-=------*+  =%%%%%%%%=</tspan>
-    <tspan x="15" y="230"> #%%%%%%%#-*==+-+:-=:-=:-+%#.+%%%%%%%%#</tspan>
-    <tspan x="15" y="250">.#%%%%%%%%**:::  -...:   =#--+%%%%%%%%%.</tspan>
-    <tspan x="15" y="270">.#%%%%%%%%%* .-::. .     :.=.-%%%%%%%%#.</tspan>
-    <tspan x="15" y="290"> #%%%%%%%%%#.-+=---=-      .-#%%%%%%%%#</tspan>
-    <tspan x="15" y="310"> =%%%%%%%%%%=.:-=-: .    .-####%%%%%%%=</tspan>
-    <tspan x="15" y="330">  *%%%%%%%%%%- .:   . .:: -%**+=#%%%%*</tspan>
-    <tspan x="15" y="350">  .*%%%%%%%###-...:=-...  :%%%+ :#%%*.</tspan>
-    <tspan x="15" y="370">    +%%%%%*:*%%###*=.     +#+-=+*#%+</tspan>
-    <tspan x="15" y="390">     -*%#+-.-*#%%=:     :**=+#%%%#-</tspan>
-    <tspan x="15" y="410">       -+#%%#++*#*:   .+#+*%%%%*-</tspan>
-    <tspan x="15" y="430">         .-+#%%#*#%+-+#%#%%#+-.</tspan>
-    <tspan x="15" y="450">             .-=++*****+=-.</tspan>
+  <text fill="#24292f" class="ascii" font-size="12px">
+    <tspan x="8" y="13">                                 ..</tspan>
+    <tspan x="8" y="27">                        ............  .</tspan>
+    <tspan x="8" y="41">                        =##+-.         :.</tspan>
+    <tspan x="8" y="55">                         .+#@@*:::..    ::</tspan>
+    <tspan x="8" y="69">                            .=- =:.:-=.  .:</tspan>
+    <tspan x="8" y="83">                           ::= .:   .=@%+:::</tspan>
+    <tspan x="8" y="97">                        .---:-= :   .:-+#%#+.</tspan>
+    <tspan x="8" y="111">                      .=-.   .--+=.::     ..</tspan>
+    <tspan x="8" y="125">                     :#:    . .*+</tspan>
+    <tspan x="8" y="139">                  .::#=       .:*.</tspan>
+    <tspan x="8" y="153">                 -::+-     .-  -=:</tspan>
+    <tspan x="8" y="167">                = :=.   .. #+ .:-.         .::.-==</tspan>
+    <tspan x="8" y="181">               :- *   :+=.-%...:=         ==-+=*.</tspan>
+    <tspan x="8" y="195">               =.+:  .::--%=-..:+      :=++*+--.</tspan>
+    <tspan x="8" y="209">               *==       -%+:..:=  .-=+=:..*#=</tspan>
+    <tspan x="8" y="223">              -=          *####-:-=+-:     .:.</tspan>
+    <tspan x="8" y="237">            .=  . .   .-=:=**=+---.</tspan>
+    <tspan x="8" y="251">            +   .  .-*@@.   =+-+.</tspan>
+    <tspan x="8" y="265">           +. ..:-+#%%%#+:--:-+*+.</tspan>
+    <tspan x="8" y="279">          -+:=+++*****#%+.    -==*+.</tspan>
+    <tspan x="8" y="293">           .:. ..++*#%*.    : =   :+.</tspan>
+    <tspan x="8" y="307">             .::+=%@%=     .: *     -:</tspan>
+    <tspan x="8" y="321">          :---.-*-+-.   .. : =+      =:</tspan>
+    <tspan x="8" y="335">      .:--:.  ==.:.... .  :  %---::  .#.</tspan>
+    <tspan x="8" y="349">   .:--:.   =+:          .  #*::.:     +.</tspan>
+    <tspan x="8" y="363">.---:.      ##-:           +%. ..   .-=+.</tspan>
+    <tspan x="8" y="377"> :         :-*#*#+:       +@.  . :=*%%-+.</tspan>
+    <tspan x="8" y="391">         .=: .%%*++=--:. =#+:-----:*@:  +</tspan>
+    <tspan x="8" y="405">      .-:--::-:.     :-==-  .       :=. .-</tspan>
+    <tspan x="8" y="419">      := . --                         =--::..--:==</tspan>
+    <tspan x="8" y="433">    --:-+: ::                          =:   =+-==:</tspan>
+    <tspan x="8" y="447">     =+-+*=-+:                         :=:=++-=+.</tspan>
+    <tspan x="8" y="461">     .: .+*=-+-                         ==-=:</tspan>
+    <tspan x="8" y="475">____..---''--..____..---''--..____..---''--..__</tspan>
+    <tspan x="8" y="489">  .       .       o      .       .      .</tspan>
+    <tspan x="8" y="503">      ..       .       ..      o      .</tspan>
   </text>
   <text fill="#24292f">
     <tspan x="410" y="30">juan@github —————————————————————————————————————————</tspan>
