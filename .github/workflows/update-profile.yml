@@ -2,7 +2,7 @@ name: Update profile stats
 
 on:
   schedule:
-    - cron: "17 5 * * *"
+    - cron: "17 5 1 * *"
   workflow_dispatch:
 
 permissions:
@@ -23,7 +23,11 @@ jobs:
       - name: Render current profile statistics
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python scripts/render_profile.py
+        run: |
+          if [[ "$GITHUB_EVENT_NAME" == "schedule" ]]; then
+            export ACTIVITY_MONTH_OFFSET=1
+          fi
+          python scripts/render_profile.py
       - name: Commit changed statistics
         run: |
           if [[ -z "$(git status --short -- dark_mode.svg light_mode.svg)" ]]; then
