@@ -110,13 +110,13 @@
     <text x="480" y="456" class="label">Medium</text>
     <text x="740" y="456" class="value">medium.com/@juang294</text>
     <line x1="625" y1="477" x2="1138" y2="477" class="leader"/>
-    <text x="480" y="481" class="label">GitHub</text>
-    <text x="740" y="481" class="value">github.com/juan294</text>
+    <text x="480" y="481" class="label">LinkedIn</text>
+    <text x="740" y="481" class="value">linkedin.com/in/juanagonzalezp</text>
     <text x="480" y="519" class="section">- GitHub Stats</text>
     <line x1="635" y1="513" x2="1148" y2="513" class="rule"/>
     <line x1="625" y1="546" x2="1138" y2="546" class="leader"/>
     <text x="480" y="550" class="label">Public repos</text>
-    <text x="740" y="550" class="value">11</text>
+    <text x="740" y="550" class="value">12</text>
     <line x1="625" y1="571" x2="1138" y2="571" class="leader"/>
     <text x="480" y="575" class="label">Stars</text>
     <text x="740" y="575" class="value">71</text>

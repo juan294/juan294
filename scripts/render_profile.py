@@ -101,7 +101,7 @@ def render(stats: dict[str, int]) -> str:
         ("Email", "juan294@gmail.com"),
         ("Portfolio", "portfolio.thecreativetoken.com"),
         ("Medium", "medium.com/@juang294"),
-        ("GitHub", "github.com/juan294"),
+        ("LinkedIn", "linkedin.com/in/juanagonzalezp"),
     ]:
         elements.extend(row(y, label, value))
         y += 25
