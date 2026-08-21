@@ -7,7 +7,11 @@
 
 ## About
 
-I design and ship production AI systems, developer tools, and voice products. I work across architecture and hands-on delivery, with a focus on secure agents, observable systems, and useful automation. I previously led solutions architecture for Amazon Alexa and co-founded a health-tech company. Today I work at Avolta and build an independent product portfolio.
+I try to move through life with awareness: of my surroundings, my privilege, how lucky I am, and how limited time really is. I don't take for granted who I am, what I have, or the people around me. That awareness shapes how I live. It keeps me honest about my purpose and my responsibility to others.
+
+I don't save things for later, because later isn't promised. My family comes first, always. No job, no perk, no shiny new thing comes close. I've walked away from a lot and stepped into uncertainty more than once, because I'd rather be free than live by rules that betray what matters to me.
+
+I have a strong sense of purpose, and I'm borderline delusional about what I might be able to achieve. I care deeply about doing meaningful work, doing it well, and not wasting time on things that don't matter to me or the people I love.
 
 ---
 
