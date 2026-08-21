@@ -14,8 +14,8 @@ ROOT = Path(__file__).resolve().parents[1]
 USERNAME = "juan294"
 API = "https://api.github.com"
 ROW_WIDTH = 54
-ART_COLUMNS = 47
-ART_ROWS = 32
+ART_COLUMNS = 54
+ART_ROWS = 36
 
 
 THEMES = {
@@ -106,7 +106,7 @@ def section(y: int, title: str) -> str:
 
 def build_content(stats: dict[str, int], art: list[str]) -> tuple[str, str]:
     art_lines = "\n".join(
-        f'    <tspan x="8" y="{18 + index * 16}">{escape(value)}</tspan>'
+        f'    <tspan x="8" y="{13 + index * 14}">{escape(value)}</tspan>'
         for index, value in enumerate(art)
     )
 
@@ -152,7 +152,7 @@ def render(colors: dict[str, str], art_lines: str, detail_lines: str) -> str:
     return f'''<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,monospace" viewBox="0 0 985 530" width="985px" height="530px" font-size="16px" role="img" aria-labelledby="title desc">
   <title id="title">Juan Gonzalez terminal profile</title>
-  <desc id="desc">An ASCII agent control core beside professional details, contact links, and public GitHub statistics.</desc>
+  <desc id="desc">An ASCII walking traveler beside professional details, contact links, and public GitHub statistics.</desc>
   <style>
     .key {{ fill: {colors["key"]}; }}
     .value {{ fill: {colors["value"]}; }}
@@ -160,7 +160,7 @@ def render(colors: dict[str, str], art_lines: str, detail_lines: str) -> str:
     text, tspan {{ white-space: pre; }}
   </style>
   <rect width="985" height="530" fill="{colors["background"]}" rx="15"/>
-  <text fill="{colors["text"]}" class="ascii" font-size="14px">
+  <text fill="{colors["text"]}" class="ascii" font-size="12px">
 {art_lines}
   </text>
   <text fill="{colors["text"]}">
@@ -172,7 +172,7 @@ def render(colors: dict[str, str], art_lines: str, detail_lines: str) -> str:
 
 def main() -> None:
     stats = collect_stats()
-    art = (ROOT / "assets" / "agent-core.txt").read_text(encoding="utf-8").splitlines()
+    art = (ROOT / "assets" / "wanderer.txt").read_text(encoding="utf-8").splitlines()
     if len(art) != ART_ROWS or any(
         len(line) > ART_COLUMNS for line in art
     ):
