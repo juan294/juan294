@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,monospace" viewBox="0 0 985 530" width="985px" height="530px" font-size="16px" role="img" aria-labelledby="title desc">
   <title id="title">Juan Gonzalez terminal profile</title>
-  <desc id="desc">An ASCII portrait beside professional details, contact links, and public GitHub statistics.</desc>
+  <desc id="desc">An ASCII agent control core beside professional details, contact links, and public GitHub statistics.</desc>
   <style>
     .key { fill: #ffa657; }
     .value { fill: #a5d6ff; }
@@ -9,27 +9,39 @@
     text, tspan { white-space: pre; }
   </style>
   <rect width="985" height="530" fill="#161b22" rx="15"/>
-  <text fill="#c9d1d9" class="ascii">
-    <tspan x="15" y="70">             :-=++*****+=-:.</tspan>
-    <tspan x="15" y="90">         .=*#%%%%%%%%%%%%%%#*=:</tspan>
-    <tspan x="15" y="110">       -*%%%%%%%#*+++*#%%%%%%%%*=</tspan>
-    <tspan x="15" y="130">     -#%%*++++*+.      :=#%%%%%%%#=</tspan>
-    <tspan x="15" y="150">   .*%%%==##%%%##+:       =#%%%%%%%*.</tspan>
-    <tspan x="15" y="170">  .#%%%#:%%%%%#*+***=-:    .*%%%%%%%#.</tspan>
-    <tspan x="15" y="190">  *%%%%%+*%%#:      :-===.   #%%%%%%%#</tspan>
-    <tspan x="15" y="210"> =%%%%%%%#*#+:. .-=------*+  =%%%%%%%%=</tspan>
-    <tspan x="15" y="230"> #%%%%%%%#-*==+-+:-=:-=:-+%#.+%%%%%%%%#</tspan>
-    <tspan x="15" y="250">.#%%%%%%%%**:::  -...:   =#--+%%%%%%%%%.</tspan>
-    <tspan x="15" y="270">.#%%%%%%%%%* .-::. .     :.=.-%%%%%%%%#.</tspan>
-    <tspan x="15" y="290"> #%%%%%%%%%#.-+=---=-      .-#%%%%%%%%#</tspan>
-    <tspan x="15" y="310"> =%%%%%%%%%%=.:-=-: .    .-####%%%%%%%=</tspan>
-    <tspan x="15" y="330">  *%%%%%%%%%%- .:   . .:: -%**+=#%%%%*</tspan>
-    <tspan x="15" y="350">  .*%%%%%%%###-...:=-...  :%%%+ :#%%*.</tspan>
-    <tspan x="15" y="370">    +%%%%%*:*%%###*=.     +#+-=+*#%+</tspan>
-    <tspan x="15" y="390">     -*%#+-.-*#%%=:     :**=+#%%%#-</tspan>
-    <tspan x="15" y="410">       -+#%%#++*#*:   .+#+*%%%%*-</tspan>
-    <tspan x="15" y="430">         .-+#%%#*#%+-+#%#%%#+-.</tspan>
-    <tspan x="15" y="450">             .-=++*****+=-.</tspan>
+  <text fill="#c9d1d9" class="ascii" font-size="14px">
+    <tspan x="8" y="18"></tspan>
+    <tspan x="8" y="34">       o   o   o   o   o   o   o</tspan>
+    <tspan x="8" y="50">       |   |   |   |   |   |   |</tspan>
+    <tspan x="8" y="66">   o---+---------------------------+---o</tspan>
+    <tspan x="8" y="82">       |  .---------------------.  |</tspan>
+    <tspan x="8" y="98">   o---+--|  JUAN / AGENT CORE  |--+---o</tspan>
+    <tspan x="8" y="114">       |  |                     |  |</tspan>
+    <tspan x="8" y="130">       |  |  01  RESEARCH      |  |</tspan>
+    <tspan x="8" y="146">   o---+--|  02  PLAN          |--+---o</tspan>
+    <tspan x="8" y="162">       |  |  03  BUILD         |  |</tspan>
+    <tspan x="8" y="178">       |  |  04  SHIP_         |  |</tspan>
+    <tspan x="8" y="194">   o---+--|                     |--+---o</tspan>
+    <tspan x="8" y="210">       |  '---------------------'  |</tspan>
+    <tspan x="8" y="226">       +-------------+-------------+</tspan>
+    <tspan x="8" y="242">                     |</tspan>
+    <tspan x="8" y="258">             .-------+-------.</tspan>
+    <tspan x="8" y="274">             |   RPI / CI     |</tspan>
+    <tspan x="8" y="290">             '---+---+---+---'</tspan>
+    <tspan x="8" y="306">                 |   |   |</tspan>
+    <tspan x="8" y="322">         .-------'   |   '-------.</tspan>
+    <tspan x="8" y="338">         |           |           |</tspan>
+    <tspan x="8" y="354">     .---+---.   .---+---.   .---+---.</tspan>
+    <tspan x="8" y="370">     | VOICE |   | AGENTS|   | TOOLS |</tspan>
+    <tspan x="8" y="386">     '---+---'   '---+---'   '---+---'</tspan>
+    <tspan x="8" y="402">         |           |           |</tspan>
+    <tspan x="8" y="418">    spoken-letter   archy       gh-glance</tspan>
+    <tspan x="8" y="434">                     |             |</tspan>
+    <tspan x="8" y="450">                  summon       chapa-cli</tspan>
+    <tspan x="8" y="466"></tspan>
+    <tspan x="8" y="482">       &lt; design / build / verify / ship &gt;</tspan>
+    <tspan x="8" y="498"></tspan>
+    <tspan x="8" y="514">              system status: READY</tspan>
   </text>
   <text fill="#c9d1d9">
     <tspan x="410" y="30">juan@github —————————————————————————————————————————</tspan>
