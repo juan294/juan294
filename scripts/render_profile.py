@@ -225,7 +225,7 @@ def build_content(stats: ProfileStats, art: list[str]) -> tuple[str, str]:
         row(90, "Role", "Digital Architect / Developer"),
         row(110, "Prev", "Amazon Alexa / health-tech founder"),
         row(130, "Tools", "Codex, Claude Code, Ghostty"),
-        markup_line(150, '<tspan class="cc">. </tspan>'),
+        row(150, "Built", "Summon, GH-Glance"),
         row(170, "Building.With", "TypeScript, Python, JavaScript"),
         row(190, "Building.On", "Next.js, React, Node.js, SQL"),
         row(210, "Languages.Real", "English, Spanish"),
