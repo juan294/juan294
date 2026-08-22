@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,monospace" viewBox="0 0 985 530" width="985px" height="530px" font-size="16px" role="img" aria-labelledby="title desc">
   <title id="title">Juan Gonzalez terminal profile</title>
-  <desc id="desc">An ASCII walking traveler beside professional details, contact links, and public GitHub statistics.</desc>
+  <desc id="desc">An ASCII walking traveler beside professional details, contact links, and GitHub statistics.</desc>
   <style>
     .key { fill: #ffa657; }
     .value { fill: #a5d6ff; }
@@ -70,7 +70,7 @@
     <tspan x="410" y="390"><tspan class="cc">. </tspan><tspan class="key">LinkedIn</tspan>:<tspan class="cc"> ........................... </tspan><tspan class="value">juanagonzalezp</tspan></tspan>
     <tspan x="410" y="410"><tspan class="cc">. </tspan><tspan class="key">Medium</tspan>:<tspan class="cc"> .................................. </tspan><tspan class="value">@juang294</tspan></tspan>
     <tspan x="410" y="450">- GitHub Stats ———————————————————————————————————————</tspan>
-    <tspan x="410" y="470"><tspan class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc"> ................ </tspan><tspan class="value">12</tspan> | <tspan class="key">Stars</tspan> <tspan class="value">71</tspan> | <tspan class="key">Followers</tspan> <tspan class="value">14</tspan></tspan>
+    <tspan x="410" y="470"><tspan class="cc">. </tspan><tspan class="key">Repos</tspan>:<tspan class="cc"> ................ </tspan><tspan class="value">21</tspan> | <tspan class="key">Stars</tspan> <tspan class="value">76</tspan> | <tspan class="key">Followers</tspan> <tspan class="value">14</tspan></tspan>
     <tspan x="410" y="490"><tspan class="cc">. </tspan><tspan class="key">Commits.12mo</tspan>:<tspan class="cc"> .... </tspan><tspan class="value">15,761</tspan> | <tspan class="key">PRs</tspan> <tspan class="value">2,470</tspan> | <tspan class="key">Resolved</tspan> <tspan class="value">96%</tspan></tspan>
     <tspan x="410" y="510"><tspan class="cc">. </tspan><tspan class="key">NetLOC.12mo</tspan>:<tspan class="cc"> .... </tspan><tspan class="value">5,462,963</tspan> (<tspan class="positive">+8,142,392</tspan>, <tspan class="negative">-2,679,429</tspan>)</tspan>
   </text>

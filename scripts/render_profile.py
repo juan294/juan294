@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render theme-aware profile SVGs with current public GitHub statistics."""
+"""Render theme-aware profile SVGs with current GitHub statistics."""
 
 from __future__ import annotations
 
@@ -143,11 +143,15 @@ def collect_stats() -> ProfileStats:
     if not isinstance(user, dict):
         raise TypeError("GitHub user response must be an object")
 
+    # /user/repos (authenticated) includes private repos, unlike
+    # /users/{username}/repos which is always public-only regardless of
+    # the caller's credentials. Requires a token with repo scope (see
+    # PROFILE_PAT in the workflow) rather than the default GITHUB_TOKEN.
     repos: list[dict] = []
     page = 1
     while True:
         batch = github_json(
-            f"{API}/users/{USERNAME}/repos"
+            f"{API}/user/repos"
             f"?per_page=100&type=owner&sort=updated&page={page}",
             token,
         )
@@ -163,7 +167,7 @@ def collect_stats() -> ProfileStats:
     lines_added = activity["lines_added"]
     lines_deleted = activity["lines_deleted"]
     return {
-        "repos": int(user["public_repos"]),
+        "repos": len(repos),
         "stars": sum(int(repo["stargazers_count"]) for repo in repos),
         "followers": int(user["followers"]),
         "commits": activity["commits"],
@@ -278,7 +282,7 @@ def render(colors: dict[str, str], art_lines: str, detail_lines: str) -> str:
     return f'''<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,monospace" viewBox="0 0 985 530" width="985px" height="530px" font-size="16px" role="img" aria-labelledby="title desc">
   <title id="title">Juan Gonzalez terminal profile</title>
-  <desc id="desc">An ASCII walking traveler beside professional details, contact links, and public GitHub statistics.</desc>
+  <desc id="desc">An ASCII walking traveler beside professional details, contact links, and GitHub statistics.</desc>
   <style>
     .key {{ fill: {colors["key"]}; }}
     .value {{ fill: {colors["value"]}; }}
